@@ -8,6 +8,21 @@ function isCorrectItem(item) {
   return isNumericValue(item) || operators.includes(item)
 }
 
+function startCalculation(calculationSteps) {
+  switch (calculationSteps[1]) {
+    case '+':
+      return Number(calculationSteps[0]) + Number(calculationSteps[2])
+    case '-':
+      return Number(calculationSteps[0]) - Number(calculationSteps[2])
+    case '*':
+      return Number(calculationSteps[0]) * Number(calculationSteps[2])
+    case '/':
+      return Number(calculationSteps[0]) / Number(calculationSteps[2])
+    default:
+      return NaN
+  }
+}
+
 function calculate(input) {
   let calculationSteps = []
 
@@ -16,6 +31,9 @@ function calculate(input) {
       calculationSteps.push(item)
     }
   })
+  if (calculationSteps.length !== 3) return NaN
+
+  return startCalculation(calculationSteps)
 }
 
 module.exports = calculate
